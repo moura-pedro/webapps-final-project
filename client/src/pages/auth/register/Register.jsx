@@ -59,7 +59,7 @@ const Register = () => {
       <div className="register-card">
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className="register-form-group">
             <label htmlFor="firstName">First Name</label>
             <input
               type="text"
@@ -72,7 +72,7 @@ const Register = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="register-form-group">
             <label htmlFor="lastName">Last Name</label>
             <input
               type="text"
@@ -85,7 +85,7 @@ const Register = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="register-form-group">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -98,7 +98,7 @@ const Register = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="register-form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"

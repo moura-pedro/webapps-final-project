@@ -1,0 +1,66 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    padding: 1rem 2rem;
+    z-index: 1000;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .navbar-brand {
+    text-decoration: none;
+  }
+  
+  .brand-text {
+    color: #E50914;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .navbar-auth {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .auth-button {
+    background-color: transparent;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .auth-button:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  @media (max-width: 480px) {
+    .navbar {
+      padding: 1rem;
+    }
+  
+    .brand-text {
+      font-size: 1.5rem;
+    }
+  
+    .auth-button {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+    }
+  }

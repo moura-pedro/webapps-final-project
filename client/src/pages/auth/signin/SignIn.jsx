@@ -49,7 +49,7 @@ const SignIn = () => {
         <p className="subtitle">Enter your credentials to access your account</p>
         
         <form onSubmit={handleSubmit} className="signin-form">
-          <div className="form-group">
+          <div className="signin-form-group">
             <input
               type="email"
               name="email"
@@ -61,7 +61,7 @@ const SignIn = () => {
             />
           </div>
           
-          <div className="form-group">
+          <div className="signin-form-group">
             <input
               type="password"
               name="password"
