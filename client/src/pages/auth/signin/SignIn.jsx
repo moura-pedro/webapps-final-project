@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../../context/UserContext';
 import './SignIn.css';
 
 const SignIn = () => {
@@ -7,6 +9,8 @@ const SignIn = () => {
     password: ''
   });
   const [error, setError] = useState('');
+  const { login } = useUser();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -25,7 +29,7 @@ const SignIn = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Important for cookies
+        credentials: 'include',
         body: JSON.stringify(formData)
       });
 
@@ -35,8 +39,8 @@ const SignIn = () => {
         throw new Error(data.message || 'Sign in failed');
       }
 
-      // Handle successful sign in - You'll want to update this based on your User context
-      window.location.href = '/movies';
+      login(data.user);
+      navigate('/');
     } catch (err) {
       setError(err.message || 'An error occurred during sign in');
     }
@@ -46,30 +50,34 @@ const SignIn = () => {
     <div className="signin-container">
       <div className="signin-card">
         <h2>Sign In</h2>
-        <p className="subtitle">Enter your credentials to access your account</p>
+        <p className="subtitle">Welcome back!</p>
         
         <form onSubmit={handleSubmit} className="signin-form">
-          <div className="signin-form-group">
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
+              id="email"
               name="email"
-              placeholder="Email"
               value={formData.email}
               onChange={handleChange}
               required
               className="form-input"
+              placeholder="Enter your email"
             />
           </div>
           
-          <div className="signin-form-group">
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
+              id="password"
               name="password"
-              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               required
               className="form-input"
+              placeholder="Enter your password"
             />
           </div>
 

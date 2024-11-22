@@ -1,101 +1,112 @@
 .signin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    background-color: #f5f5f5;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  padding: 20px;
+}
+
+.signin-card {
+  background: #000000;
+  padding: 3rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.signin-card h2 {
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+/* Remove subtitle styles if you want exact match with register */
+.subtitle {
+  display: none;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  margin-left: 50px;
+  gap: 1rem;
+}
+
+.form-group label {
+  color: #ffffff;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #ffffff;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ffffff;
+}
+
+.submit-button {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.75rem 2rem;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.error-message {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #ef4444;
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.success-message {
+  background-color: rgba(22, 163, 74, 0.1);
+  color: #22c55e;
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media (max-width: 480px) {
   .signin-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    padding: 1.5rem;
   }
-  
-  .signin-card h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 0.5rem;
-    font-size: 1.8rem;
+
+  .form-group {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-left: 0;
   }
-  
-  .subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .signin-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .signin-form-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-input {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
-  
-  .form-input:focus {
-    outline: none;
-    border-color: #646cff;
-    box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.1);
-  }
-  
-  .submit-button {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 0.75rem 2rem;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
-  }
-  
-  .submit-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-  }
-  
-  .error-message {
-    background-color: rgba(220, 38, 38, 0.1);
-    color: #ef4444;
-    padding: 0.75rem;
-    border-radius: 4px;
-    text-align: center;
-    margin-top: 1rem;
-  }
-  
-  .success-message {
-    background-color: rgba(22, 163, 74, 0.1);
-    color: #22c55e;
-    padding: 0.75rem;
-    border-radius: 4px;
-    text-align: center;
-    margin-top: 1rem;
-  }
-  
-  @media (max-width: 480px) {
-    .signin-card {
-      padding: 1.5rem;
-    }
-    
-    .signin-card h2 {
-      font-size: 1.5rem;
-    }
-  }
+}

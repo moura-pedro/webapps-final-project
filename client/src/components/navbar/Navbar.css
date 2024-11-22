@@ -43,11 +43,23 @@
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    cursor: pointer;
   }
   
   .auth-button:hover {
     background-color: white;
     color: black;
+  }
+  
+  .user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .welcome-text {
+    color: white;
+    font-size: 0.9rem;
   }
   
   @media (max-width: 480px) {
@@ -62,5 +74,10 @@
     .auth-button {
       padding: 0.4rem 0.8rem;
       font-size: 0.8rem;
+    }
+  
+    .user-menu {
+      flex-direction: column;
+      gap: 0.5rem;
     }
   }
