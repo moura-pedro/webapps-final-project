@@ -24,15 +24,16 @@
     font-weight: 500;
   }
   
-  .form-group {
+  .register-form-group {
     display: grid;
-    grid-template-columns: 120px 1fr;  /* First column for label, second for input */
+    grid-template-columns: 100px 1fr;  /* First column for label, second for input */
     align-items: center;
     margin-bottom: 1.5rem;
+    margin-left: 50px;
     gap: 1rem;
   }
   
-  .form-group label {
+  .register-form-group label {
     color: #ffffff;
     text-align: left;
     font-size: 1rem;
@@ -93,7 +94,7 @@
       padding: 1.5rem;
     }
   
-    .form-group {
+    .register-form-group {
       grid-template-columns: 1fr; /* Stack on mobile */
       gap: 0.5rem;
     }
