@@ -1,0 +1,48 @@
+.moviebox {
+    background-color: #000000;
+    width: fit-content;
+    display: inline-block;
+
+    .moviecontent {
+        margin-top: 2%;
+        margin-bottom: 2%;
+        font-family: sans-serif;
+    }
+
+    .movietitle {
+        font-size: 16px;
+        color: white;
+        font-weight: 900;
+    }
+
+    .movieinfo {
+        font-size: 13px;
+        color: white;
+
+        .movieinfoheading {
+            font-weight: 600;
+        }
+
+        .movieinfodata {
+            margin-left: 2%;
+        }
+    }
+
+    .moviebuttondiv {
+        display: flex;
+        justify-content: left;
+
+        .moviebutton {
+            color: grey;
+        }
+    }
+}
+
+#right-button {
+    margin-left: 2%;
+}
+
+#movieimage {
+    width: 250px;
+    height: 400px;
+}
