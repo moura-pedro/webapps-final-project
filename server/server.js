@@ -7,6 +7,7 @@ const Movie = require('./models/Movie')
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const movieRoutes = require('./routes/movieservice')
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/movies', movieRoutes);
 
 // MongoDB connection - removed deprecated options
 mongoose.connect('mongodb://localhost:27017/movies-app')
