@@ -4,6 +4,7 @@ import Home from './pages/home/Home';
 import Register from './pages/auth/register/Register';
 import SignIn from './pages/auth/signin/SignIn';
 import Navbar from './components/navbar/Navbar';
+import CookieConsent from './components/CookieConsent/CookieConsent';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>
+        <CookieConsent />
       </Router>
     </UserProvider>
   );

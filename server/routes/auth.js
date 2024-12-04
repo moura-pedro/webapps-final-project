@@ -64,12 +64,16 @@ router.post('/signin', async (req, res) => {
             });
         }
 
-        // Create session cookie
-        res.cookie('sessionId', user._id, {
+        // Create session cookie with modified settings
+        res.cookie('sessionId', user._id.toString(), {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 24 * 60 * 60 * 1000 // 24 hours
+            sameSite: 'lax',  // Added this
+            maxAge: 24 * 60 * 60 * 1000, // 24 hours
+            path: '/'  // Added this
         });
+
+        console.log('Setting cookie with sessionId:', user._id); // Debug log
 
         res.json({
             success: true,
@@ -88,13 +92,69 @@ router.post('/signin', async (req, res) => {
     }
 });
 
-// Sign out route
+// Check auth status route - update with more logging
+router.get('/check-auth', async (req, res) => {
+    try {
+        console.log('Received auth check request'); // Debug log
+        console.log('Cookies received:', req.cookies); // Debug log
+        
+        const sessionId = req.cookies.sessionId;
+        
+        if (!sessionId) {
+            console.log('No sessionId cookie found'); // Debug log
+            return res.status(401).json({
+                success: false,
+                message: 'No session found'
+            });
+        }
+
+        const user = await User.findById(sessionId);
+        console.log('Found user:', user ? 'yes' : 'no'); // Debug log
+
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: 'Invalid session'
+            });
+        }
+
+        res.json({
+            success: true,
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            }
+        });
+    } catch (error) {
+        console.error('Auth check error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error checking authentication status'
+        });
+    }
+});
+
 router.post('/signout', (req, res) => {
-    res.clearCookie('sessionId');
-    res.json({
-        success: true,
-        message: 'Signed out successfully'
-    });
+    try {
+        res.clearCookie('sessionId', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/'
+        });
+        
+        res.json({
+            success: true,
+            message: 'Signed out successfully'
+        });
+    } catch (error) {
+        console.error('Sign out error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error during sign out'
+        });
+    }
 });
 
 module.exports = router;

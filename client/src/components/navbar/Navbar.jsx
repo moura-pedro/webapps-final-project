@@ -17,6 +17,8 @@ const Navbar = () => {
       if (response.ok) {
         logout();
         navigate('/');
+      } else {
+        console.error('Logout failed:', response.statusText);
       }
     } catch (error) {
       console.error('Logout failed:', error);
