@@ -95,30 +95,55 @@ router.get('/check-like/:movieId', requireAuth, async (req, res) => {
     }
   });
 
-// Register route
+// Get movies route
 router.get('/get-movies', async (req, res) => {
-    const moviesbygenre = {}
-    // fetch all movies from database
-    const result = Movie.find()
-    await result.cursor().forEach((movie) => {
-        if (movie.info.genres !== undefined) {
-            const genres = movie.info.genres
-            for (let i = 0; i < genres.length; i++) {
-                if (moviesbygenre[genres[i]] === undefined) {
-                    // if new genre make new list
-                    moviesbygenre[genres[i]] = []
-                }
-                if (moviesbygenre[genres[i]].length < 10) {
-                    moviesbygenre[genres[i]].push(movie)
-                }
-            }
-        }
-    })
+  const moviesByGenre = {};
+  
+  try {
+      // fetch all movies from database
+      const movies = await Movie.find();
 
-    res.json({
-        movies: moviesbygenre,
-        success: true
-    })
+      // Process movies by genre
+      movies.forEach((movie) => {
+          if (movie.info.genres) {
+              movie.info.genres.forEach((genre) => {
+                  if (!moviesByGenre[genre]) {
+                      moviesByGenre[genre] = [];
+                  }
+                  moviesByGenre[genre].push(movie);
+              });
+          }
+      });
+
+      // Sort each genre's movies by rating
+      for (let genre in moviesByGenre) {
+          moviesByGenre[genre] = moviesByGenre[genre]
+              .sort((a, b) => {
+                  // First sort by rating 
+                  const ratingA = a.info.rating || 0;
+                  const ratingB = b.info.rating || 0;
+                  
+                  if (ratingB !== ratingA) {
+                      return ratingB - ratingA;
+                  }
+                  
+                  // If ratings are equal, sort by title alphabetically
+                  return a.title.localeCompare(b.title);
+              })
+              .slice(0, 10);
+      }
+
+      res.json({
+          movies: moviesByGenre,
+          success: true
+      });
+  } catch (error) {
+      console.error('Error fetching movies:', error);
+      res.status(500).json({
+          success: false,
+          message: 'Error fetching movies'
+      });
+  }
 });
 
 router.post('/unlike/:movieId', requireAuth, async (req, res) => {
