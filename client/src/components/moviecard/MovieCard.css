@@ -1,15 +1,25 @@
+/* Card container with a clean, professional look */
 .moviebox {
     width: 251px;
     display: inline-block;
-    border: 0.5px solid grey;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    background-color: #222;
+    overflow: hidden;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* Content container inside the card */
 .moviecontent {
     margin-top: 2%;
     margin-bottom: 2%;
-    font-family: sans-serif;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: white;
 }
 
+/* Movie title styling */
 .movietitle {
     font-size: 16px;
     color: white;
@@ -23,31 +33,40 @@
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* Movie information block (e.g., ratings, release date) */
 .movieinfo {
     font-size: 13px;
     color: white;
     padding: 0 10px;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
+
+/* Styling for the rating heading */
 .rating-heading {
     font-weight: 600;
 }
 
+/* Movie information section headings (e.g., cast, genre) */
 .movieinfoheading {
     font-weight: 600;
 }
 
+/* Data inside the movie information block */
 .movieinfodata {
     margin-left: 2%;
 }
 
+/* Button container for movie actions (like, dislike) */
 .moviebuttondiv {
     display: flex;
     justify-content: left;
     padding: 0 10px;
 }
 
+/* Styling for the movie action buttons */
 .moviebutton {
     color: grey;
     background: white;
@@ -56,27 +75,51 @@
     cursor: pointer;
     padding: 5px 10px;
     transition: all 0.3s ease;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* Hover effect for buttons */
 .moviebutton:hover {
     color: red;
 }
 
+/* Styling for liked movie button */
 .moviebutton.liked {
     color: #ff4b4b;
 }
 
+/* Styling for the right button (if any specific functionality) */
 #right-button {
     margin-left: 2%;
 }
 
+/* Image styling inside the card */
 #movieimage {
-    width: 250px;
+    width: 100%;
     height: 400px;
     object-fit: cover;
+    border-bottom: 2px solid #ccc;
 }
 
+/* Prevent shrinking of the movie card */
 .moviecard {
     width: 250px;
     flex-shrink: 0;
+}
+
+/* Remove any unwanted circles or pseudo-elements */
+.moviebox::after {
+    content: '';
+    display: none;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .moviebox {
+        width: 100%;
+    }
+
+    #movieimage {
+        height: 250px;
+    }
 }

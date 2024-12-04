@@ -6,6 +6,9 @@ import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { useUser } from '../../context/UserContext';
 import './MovieCard.css';
 
+// Import the SVG image
+import fallbackImageUrl from '../../assets/movieplaceholder.svg';
+
 const MovieCard = ({ movieId, year, title, info, isLiked: initialIsLiked = false, onUnlike }) => {
   const { user } = useUser();
   const [isLiked, setIsLiked] = useState(initialIsLiked);
@@ -49,7 +52,7 @@ const MovieCard = ({ movieId, year, title, info, isLiked: initialIsLiked = false
       if (response.ok) {
         const newLikeState = !isLiked;
         setIsLiked(newLikeState);
-        
+
         // If the movie was unliked and we're in the account page,
         // call the onUnlike callback to remove it from the display
         if (!newLikeState && onUnlike) {
@@ -64,49 +67,48 @@ const MovieCard = ({ movieId, year, title, info, isLiked: initialIsLiked = false
   };
 
   const readableDuration = moment.duration(info.running_time_secs, 'seconds').humanize();
-  const fallbackImageUrl = 'https://placehold.co/255x400/grey/white?text=Movie\nPoster\nNot\nFound';
 
   const handleImageError = (e) => {
     e.target.src = fallbackImageUrl;
   };
 
   return (
-    <div className="moviebox">
-      <img 
-        id="movieimage" 
-        src={info.image_url || fallbackImageUrl}
-        onError={handleImageError}
-        alt={title}
-      />
-      <div className="movietitle moviecontent">
-        {title}
-      </div>
-      <div className="movieinfo moviecontent">
-        <div className="rating-badge">
-          <span className="rating-heading">Rating: </span>
-          <span className="rating-number">{info.rating || 'N/A'}</span>
-          <span className="rating-max">/10</span>
+      <div className="moviebox">
+        <img
+            id="movieimage"
+            src={info.image_url || fallbackImageUrl}  // Using the imported image
+            onError={handleImageError}
+            alt={title}
+        />
+        <div className="movietitle moviecontent">
+          {title}
         </div>
+        <div className="movieinfo moviecontent">
+          <div className="rating-badge">
+            <span className="rating-heading">Rating: </span>
+            <span className="rating-number">{info.rating || 'N/A'}</span>
+            <span className="rating-max">/10</span>
+          </div>
 
-        <div>
-          <span className="movieinfoheading">Duration: </span>
-          <span className="movieinfodata">{readableDuration}</span>
+          <div>
+            <span className="movieinfoheading">Duration: </span>
+            <span className="movieinfodata">{readableDuration}</span>
+          </div>
+        </div>
+        <div className="moviebuttondiv moviecontent">
+          <button className="moviebutton">
+            <FontAwesomeIcon icon={faEye} /> View Movie
+          </button>
+          <button
+              className={`moviebutton ${isLiked ? 'liked' : ''}`}
+              id="right-button"
+              onClick={handleLikeClick}
+          >
+            <FontAwesomeIcon icon={isLiked ? faHeartSolid : faHeartRegular} />
+            {isLiked ? 'Unlike' : 'Like'}
+          </button>
         </div>
       </div>
-      <div className="moviebuttondiv moviecontent">
-        <button className="moviebutton">
-          <FontAwesomeIcon icon={faEye} /> View Movie
-        </button>
-        <button 
-          className={`moviebutton ${isLiked ? 'liked' : ''}`} 
-          id="right-button"
-          onClick={handleLikeClick}
-        >
-          <FontAwesomeIcon icon={isLiked ? faHeartSolid : faHeartRegular} /> 
-          {isLiked ? 'Unlike' : 'Like'}
-        </button>
-      </div>
-    </div>
   );
 };
 
