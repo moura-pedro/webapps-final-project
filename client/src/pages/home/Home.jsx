@@ -11,18 +11,20 @@ const Home = () => {
       try {
         const response = await fetch('/api/movies/get-movies', {
           method: 'GET',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
         const json = await response.json();
+        console.log('Fetched movies:', json); // Debug log
 
         if (json.success) {
           setMoviesByGenre(json.movies);
         }
       } catch (err) {
-        console.log('Something went wrong', err);
+        console.error('Something went wrong', err);
       } finally {
         setLoading(false);
       }
@@ -32,7 +34,7 @@ const Home = () => {
   }, []);
 
   if (loading) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   return (

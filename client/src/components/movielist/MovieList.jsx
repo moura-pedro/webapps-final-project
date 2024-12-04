@@ -3,7 +3,6 @@ import MovieCard from '../moviecard/MovieCard';
 import './MovieList.css';
 
 const MovieList = ({genre, movies}) => {
-    
     return (
     <div>
         <div className="titlediv">
@@ -13,8 +12,13 @@ const MovieList = ({genre, movies}) => {
         <div className="moviebox">
         <ul className="movielist">
             {movies.map((movie) =>(
-                <li className="moviecard">
-                    <MovieCard year={movie.year} title={movie.title} info={movie.info} className="moviecard"/>
+                <li key={movie._id} className="moviecard">
+                    <MovieCard 
+                        movieId={movie._id}
+                        year={movie.year} 
+                        title={movie.title} 
+                        info={movie.info}
+                    />
                 </li>
             ))}
         </ul>
@@ -23,4 +27,4 @@ const MovieList = ({genre, movies}) => {
     )
 }
 
-export default MovieList
+export default MovieList;

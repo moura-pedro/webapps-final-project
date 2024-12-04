@@ -2,40 +2,56 @@
     background-color: #000000;
     width: fit-content;
     display: inline-block;
+}
 
-    .moviecontent {
-        margin-top: 2%;
-        margin-bottom: 2%;
-        font-family: sans-serif;
-    }
+.moviecontent {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: sans-serif;
+}
 
-    .movietitle {
-        font-size: 16px;
-        color: white;
-        font-weight: 900;
-    }
+.movietitle {
+    font-size: 16px;
+    color: white;
+    font-weight: 900;
+    padding: 0 10px;
+}
 
-    .movieinfo {
-        font-size: 13px;
-        color: white;
+.movieinfo {
+    font-size: 13px;
+    color: white;
+    padding: 0 10px;
+}
 
-        .movieinfoheading {
-            font-weight: 600;
-        }
+.movieinfoheading {
+    font-weight: 600;
+}
 
-        .movieinfodata {
-            margin-left: 2%;
-        }
-    }
+.movieinfodata {
+    margin-left: 2%;
+}
 
-    .moviebuttondiv {
-        display: flex;
-        justify-content: left;
+.moviebuttondiv {
+    display: flex;
+    justify-content: left;
+    padding: 0 10px;
+}
 
-        .moviebutton {
-            color: grey;
-        }
-    }
+.moviebutton {
+    color: grey;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.moviebutton:hover {
+    color: white;
+}
+
+.moviebutton.liked {
+    color: #ff4b4b;
 }
 
 #right-button {
@@ -45,4 +61,5 @@
 #movieimage {
     width: 250px;
     height: 400px;
+    object-fit: cover;
 }

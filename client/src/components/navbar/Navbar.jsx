@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const { user, logout } = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -16,7 +17,9 @@ const Navbar = () => {
 
       if (response.ok) {
         logout();
-        navigate('/');
+        if (location.pathname === '/account') {
+          navigate('/');
+        }
       } else {
         console.error('Logout failed:', response.statusText);
       }
@@ -45,6 +48,9 @@ const Navbar = () => {
           ) : (
             <div className="user-menu">
               <span className="welcome-text">Welcome, {user.username}!</span>
+              <Link to="/account" className="auth-button">
+                My Movies
+              </Link>
               <button onClick={handleLogout} className="auth-button">
                 Logout
               </button>
