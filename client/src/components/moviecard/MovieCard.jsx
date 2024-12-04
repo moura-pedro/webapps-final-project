@@ -64,7 +64,7 @@ const MovieCard = ({ movieId, year, title, info, isLiked: initialIsLiked = false
   };
 
   const readableDuration = moment.duration(info.running_time_secs, 'seconds').humanize();
-  const fallbackImageUrl = 'https://via.placeholder.com/250x400?text=Movie+Poster';
+  const fallbackImageUrl = 'https://placehold.co/255x400/grey/white?text=Movie\nPoster\nNot\nFound';
 
   const handleImageError = (e) => {
     e.target.src = fallbackImageUrl;
@@ -83,6 +83,7 @@ const MovieCard = ({ movieId, year, title, info, isLiked: initialIsLiked = false
       </div>
       <div className="movieinfo moviecontent">
         <div className="rating-badge">
+          <span className="rating-heading">Rating: </span>
           <span className="rating-number">{info.rating || 'N/A'}</span>
           <span className="rating-max">/10</span>
         </div>
