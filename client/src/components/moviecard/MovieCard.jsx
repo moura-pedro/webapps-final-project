@@ -82,10 +82,11 @@ const MovieCard = ({ movieId, year, title, info, isLiked: initialIsLiked = false
         {title}
       </div>
       <div className="movieinfo moviecontent">
-        <div>
-          <span className="movieinfoheading">Rating:</span>
-          <span className="movieinfodata">{info.rating}</span>
+        <div className="rating-badge">
+          <span className="rating-number">{info.rating || 'N/A'}</span>
+          <span className="rating-max">/10</span>
         </div>
+
         <div>
           <span className="movieinfoheading">Duration: </span>
           <span className="movieinfodata">{readableDuration}</span>

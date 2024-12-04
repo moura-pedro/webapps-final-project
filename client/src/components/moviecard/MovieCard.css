@@ -39,7 +39,8 @@
 
 .moviebutton {
     color: grey;
-    background: none;
+    background: white;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
     padding: 5px 10px;
@@ -47,7 +48,7 @@
 }
 
 .moviebutton:hover {
-    color: white;
+    color: red;
 }
 
 .moviebutton.liked {

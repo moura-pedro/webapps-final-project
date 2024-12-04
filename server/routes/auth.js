@@ -68,9 +68,9 @@ router.post('/signin', async (req, res) => {
         res.cookie('sessionId', user._id.toString(), {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',  // Added this
+            sameSite: 'lax', 
             maxAge: 24 * 60 * 60 * 1000, // 24 hours
-            path: '/'  // Added this
+            path: '/' 
         });
 
         console.log('Setting cookie with sessionId:', user._id); // Debug log
